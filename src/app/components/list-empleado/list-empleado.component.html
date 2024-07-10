@@ -1,0 +1,87 @@
+<p-table
+  id="miTabla"
+  #dt1
+  [value]="listEmpleado"
+  [scrollable]="true"
+  scrollHeight="400px"
+  [tableStyle]="{ 'min-width': '25rem' }"
+  [globalFilterFields]="[
+    'nombreCompleto',
+    'telefono',
+    'correo',
+    'fechaIngreso',
+    'estadoCivil',
+    'sexo'
+  ]"
+  [paginator]="true"
+  [rows]="5"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[5, 10, 25, 50]"
+>
+  <ng-template pTemplate="caption">
+    <div class="row" >
+      <div class="col-lg-6">
+        <h4 style="padding-bottom: 25px; padding-top: 16px;">Listado de Empleados</h4>
+      </div>
+      <div class="col-lg-6" style="text-align: right;">
+        <button class="btn btn-success btn-lg" type="button"  routerLink="/add" >Agregar</button>
+      </div>
+    </div>
+    <div style="text-align: left;">
+      <span class="p-input-icon-left ml-auto p-float-label">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+        />
+        <label>Filtro</label>
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="nombreCompleto">
+        Nombre Completo<p-sortIcon field="nombreCompleto"></p-sortIcon>
+      </th>
+      <th>Telefono</th>
+      <th pSortableColumn="correo">
+        Correo<p-sortIcon field="correo"></p-sortIcon>
+      </th>
+      <th pSortableColumn="fechaIngreso">
+        Fecha Ingreso<p-sortIcon field="fechaIngreso"></p-sortIcon>
+      </th>
+      <th>Estado Civil</th>
+      <th>Sexo</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-empleado let-index="rowIndex">
+    <tr>
+      <td>{{ empleado.nombreCompleto }}</td>
+      <td>{{ empleado.telefono }}</td>
+      <td>{{ empleado.correo }}</td>
+      <td>{{ empleado.fechaIngreso | date : "dd/MM/yy" }}</td>
+      <td>{{ empleado.estadoCivil }}</td>
+      <td>{{ empleado.sexo }}</td>
+      <td>
+        <a class="pointer" style="color: #1878b0">
+          <span class="pi pi-user-edit" style="font-size: 1.3rem" routerLink="edit/{{index}}"></span>
+
+
+        </a>
+
+        <a class="pointer" style="color: #e15639">
+          <span
+            class="pi pi-trash"
+            style="font-size: 1.3rem"
+            (click)="eliminarEmpleado(index, $event)"
+          ></span>
+          <p-toast></p-toast>
+          <p-confirmPopup></p-confirmPopup>
+        </a>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

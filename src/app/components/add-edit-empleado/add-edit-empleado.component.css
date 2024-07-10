@@ -1,0 +1,82 @@
+input{
+  margin-left: 10px;
+
+
+}
+
+.example-container{
+  width: 100%;
+
+}
+
+h5{
+  margin-bottom: 5px;
+  margin-left: 15px;
+  margin-top: 10px
+}
+
+::ng-deep .p-calendar.large {
+
+  width: 100%;
+  height:45px;
+
+
+  }
+  ::ng-deep .p-dropdown.large {
+
+    width: 100%;
+    height:45px;
+
+
+    }
+.large{
+  height:45px;
+}
+::ng-deep .p-radioButton.margen {
+
+  margin-top: 30px;;
+
+  }
+
+.altura{
+  height: 150%;
+}
+
+::ng-deep p-button.color{
+
+
+  background-color:rgb(242, 69, 50);
+
+
+
+  }
+
+  .btn-success{
+    background-color: rgb(242, 69, 50);
+    border-color: rgb(242, 69, 50);
+    float:right;
+
+
+  }
+
+  .btn-success:hover{
+    background-color: rgb(218, 50, 31);
+
+
+  }
+
+  .btn-secondary{
+
+    float:right;
+
+
+  }
+
+
+  input[type=radio]{
+    transform:scale(1.4);
+  }
+
+  .mda-form-msg{
+    color:rgb(242, 69, 50);
+  }

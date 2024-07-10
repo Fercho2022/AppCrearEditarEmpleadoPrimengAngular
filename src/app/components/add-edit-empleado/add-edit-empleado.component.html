@@ -1,0 +1,140 @@
+<div class="row">
+  <div class="col-lg-6 offset-1">
+    <h5>{{ accion }} Empleado</h5>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4">
+    <form [formGroup]="myForm" autocomplete="off">
+      <div class="col-lg-12" style="margin-left: 20px; margin-top: 20px">
+        <span class="p-float-label">
+          <input
+            pInputText
+            class="example-container p-inputtext-sm"
+            formControlName="nombreCompleto"
+          />
+          <label style="padding-left: 10px">Nombre Completo</label>
+        </span>
+        <div *ngIf="myForm.get('nombreCompleto')?.hasError('maxlength')" style="margin-left: 10px;">
+          <span class="mda-form-msg">El campo debe tener como máximo<strong>20 caracteres</strong></span>
+        </div>
+        <div *ngIf="myForm.get('nombreCompleto')?.hasError('required') && myForm.get('nombreCompleto')?.touched" style="margin-left: 10px;">
+          <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+        </div>
+
+      </div>
+      <div class="col-lg-12" style="margin-left: 20px; margin-top: 23px">
+        <span class="p-float-label">
+          <input
+            pInputText
+            formControlName="correo"
+            class="example-container p-inputtext-sm"
+          />
+          <label style="padding-left: 10px">Correo</label>
+        </span>
+        <div *ngIf="myForm.get('correo')?.hasError('email')" style="margin-left: 10px;">
+          <span class="mda-form-msg">El campo debe cumplir con el formato requerido <strong>xxx@xxx.xxx</strong></span>
+        </div>
+        <div *ngIf="myForm.get('correo')?.hasError('required') && myForm.get('correo')?.touched" style="margin-left: 10px;">
+          <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+        </div>
+      </div>
+      <br />
+
+      <div class="col-lg-12" style="margin-left: 30px; margin-top: 3px">
+        <span class="p-float-label">
+          <p-calendar
+            [showIcon]="true"
+            styleClass="large"
+            formControlName="fechaIngreso"
+          ></p-calendar>
+          <label>Fecha Ingreso</label>
+        </span>
+        <div *ngIf="myForm.get('fechaIngreso')?.hasError('required') && myForm.get('fechaIngreso')?.touched" style="margin-left: 10px;">
+          <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+        </div>
+      </div>
+      <div class="col-lg-12" style="margin-left: 20px; margin-top: 27px">
+        <span class="p-float-label">
+          <input
+            pInputText
+            formControlName="telefono"
+            class="example-container large"
+          />
+          <label style="padding-left: 10px">Teléfono</label>
+        </span>
+        <div *ngIf="myForm.get('telefono')?.hasError('required') && myForm.get('telefono')?.touched" style="margin-left: 10px;">
+          <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+        </div>
+      </div>
+      <div
+        class="col-lg-12"
+        style="margin-left: 28px; margin-top: 25px; margin-bottom: 25px"
+      >
+        <span class="p-float-label">
+          <p-dropdown
+            [options]="estadosCiviles"
+
+            formControlName="estadoCivil"
+            placeholder="Seleccionar Estado Civil"
+            styleClass="large"
+          ></p-dropdown>
+          <label>Estado Civil</label>
+        </span>
+      </div>
+
+      <div class="col-lg-12" style="margin-left: 25px">
+        <div class="form-check form-check-inline">
+          <input
+            id="macho"
+            type="radio"
+            class="form-check-input"
+            value="Masculino"
+            name="sexo"
+            formControlName="sexo"
+
+          />
+          <label class="custom-control-label" for="macho">Masculino</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            id="femenino"
+            type="radio"
+            class="form-check-input"
+            value="Femenino"
+            name="sexo"
+            formControlName="sexo"
+          />
+          <label class="custom-control-label" for="femenino">Femenino</label>
+        </div>
+      </div>
+      <br />
+      <div class="col-lg-12">
+        <button
+          class="btn btn-success btn-lg"
+          type="button"
+          style="margin-left: 10px; margin-right: -30px;"
+          (click)="guardarEmpleado($event)"
+          [disabled]="myForm.invalid"
+        >
+          Aceptar
+        </button>
+        <p-toast></p-toast>
+        <p-confirmPopup></p-confirmPopup>
+
+        <button routerLink="/" class="btn btn-secondary btn-lg" type="button">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="col-lg-4 offset-lg-2">
+    <img
+      src="../../../assets/img/usuario_cargar.avif"
+      alt=""
+      width="95%"
+      height="95%"
+    />
+  </div>
+</div>
